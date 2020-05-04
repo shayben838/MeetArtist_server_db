@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-const indexRouter = require('./index');
+const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const countriesRouter = require("./routes/countries")
 const citiesRouter = require("./routes/cities")
