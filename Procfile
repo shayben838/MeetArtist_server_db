@@ -1,2 +1,2 @@
-web: node ./routes/index.js
+web: node index.js
 
