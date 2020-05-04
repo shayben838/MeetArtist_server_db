@@ -1,2 +1,2 @@
-web: node why?index.js
+web: node index.js
 
