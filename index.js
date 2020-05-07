@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
+const get_all_users = require("./DB/api/users/get_all_users");
+
+
+
 const TestData = {
   first_name: "Shay",
   family_name: "Ben Shimol",
@@ -22,11 +26,19 @@ const TestData = {
 }
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  console.log("SHAYYYYYYY WHY???");
-  res.status(200).json(TestData)
-  // res.render('index', { title: 'Shay back end' });
+// router.get('/', function(req, res, next) {
+//   console.log("SHAYYYYYYY WHY???");
+//   res.status(200).json(TestData)
+//   // res.render('index', { title: 'Shay back end' });
 
+// });
+
+// ALL USERS
+router.get('/', function (req, res, next) {
+  get_all_users()
+      .then(result => res.status(200).json({ result }))
+      .catch(error => res.status(500).json({ error: error.message }))
 });
+
 
 module.exports = router;
