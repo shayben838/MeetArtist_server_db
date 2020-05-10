@@ -6,8 +6,11 @@ function get_all_users() {
     return new Promise((resolve, reject) => {
         connection.query(Procedure, (error, results, fields) => {
             if (error){
+                // console.log("get all error : ",error)
+
                 reject(error)
             }
+            console.log("get all ",results)
             resolve(results[0]);
         });
     })

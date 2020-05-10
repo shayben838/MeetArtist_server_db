@@ -8,7 +8,21 @@ const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+
+// HEROKU
 app.use(cors({ credentials: true, origin: "https://infallible-agnesi-f06595.netlify.app" }))
+
+// LOCAL
+// app.use(cors({ credentials: true, origin: "http://localhost:3000" }))
+
+
+
+
+
+
+
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
