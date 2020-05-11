@@ -5,7 +5,8 @@ function get_cities() {
         connection.query(`SELECT * FROM cities; `, (error, results, fields) => {
             if (error){
                 console.log("@@@@@@@@@2", error)
-                reject(error)
+                // reject(error)
+                resolve(error);
             }
             console.log("sucsses")
             resolve(results);
