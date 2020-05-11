@@ -10,10 +10,10 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 // CORS
-app.use(cors());
+// app.use(cors());
 
 // HEROKU
-// app.use(cors({ credentials: true, origin: "https://infallible-agnesi-f06595.netlify.app" }))
+app.use(cors({ credentials: true, origin: "https://infallible-agnesi-f06595.netlify.app" }))
 
 // LOCAL
 // app.use(cors({ credentials: true, origin: "http://localhost:3000" }))
