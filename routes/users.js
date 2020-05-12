@@ -32,6 +32,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 
+
 // ALL USERS
 router.get('/', function (req, res, next) {
     get_all_users()
@@ -52,14 +53,16 @@ router.get("/singleUser", function (req, res, next) {
         .catch(error => res.status(500).json({ error: error.message }))
 })
 
-// UPLOAD NEW USER
+// UPLOAD NEW USER WITH IMAGE
 router.post('/upload_user', upload.single('main_image'), async function (req, res, next) {
     try {
         let main_image = req.file.filename;
         const profile_image = "images/user/" + main_image;
         const role_id = "1"
+        
         const { display_name, email, password, age, headline, city_id, country_id, profession, studio, genre, sub_genre, booking, sound_cloud, you_tube } = req.body;
         const userId = await add_user({ role_id, display_name, email, password, age, headline, city_id, country_id, profession, studio, genre, sub_genre, booking, sound_cloud, you_tube, profile_image });
+        
         //ADD IMAGES
         // await add_images(userId, req.files);
         res.status(200).json({ userId: userId })
@@ -67,6 +70,23 @@ router.post('/upload_user', upload.single('main_image'), async function (req, re
         res.status(400).json({ user: "false" })
     }
 });
+
+// UPLOAD NEW USER NO IMAGES
+router.post('/upload_user_no_image', async function (req, res, next) {
+    try {        
+        console.log("@ @ @ @ @ @ @ @ @ ----- data sign up --- ",req.body)
+        const role_id = "1"
+        const { display_name, email, password, age, headline, city_id, country_id, profession, studio, genre, sub_genre, booking, sound_cloud, you_tube } = req.body;
+        const profile_image="null"
+        const userId = await add_user({ role_id, display_name, email, password, age, headline, city_id, country_id, profession, studio, genre, sub_genre, booking, sound_cloud, you_tube, profile_image });
+        res.status(200).json({ userId: userId })
+    } catch (err) {
+        res.status(400).json({ user: "false" })
+    }
+});
+
+
+
 // UPDATE PROFILE
 router.put("/update_profile", function (req, res, next) {
     update_profile(req.body)
