@@ -27,7 +27,6 @@ function get_filterd_users({id,display_name,full_name,genre_id,sub_genre_id,prof
                 .you_tube(you_tube)
                 .profile_image(profile_image)
                 .build();
-                console.log("QUERY AND PARAMS \N",query,params)
             connection.query(query, params, (error, result, fields) => {
                 if (error) {
                     reject(error);

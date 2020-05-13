@@ -10,7 +10,6 @@ function get_all_users() {
 
                 reject(error)
             }
-            console.log("get all ",results)
             resolve(results[0]);
         });
     })

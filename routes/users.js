@@ -128,7 +128,7 @@ router.post("/log_in", async function (req, res, next) {
             { expiresIn: "1h" }
         );
         // TOKEN COOKIE
-        res.cookie("MeetArtist_user", JSON.stringify({token:token,email:result[0].email}), { maxAge: 1000 * 60 * 60 * 24 * 7 });
+        // res.cookie("MeetArtist_user", JSON.stringify({token:token,email:result[0].email}), { maxAge: 1000 * 60 * 60 * 24 * 7 });
 
 
         
@@ -141,12 +141,18 @@ router.post("/log_in", async function (req, res, next) {
 
 //  COOKIE LOG IN
 router.post("/cookie_log_in",checkAuth, async function (req, res, next) {
+    console.log("@@@@  INSIDE COOKIE LOOG IN",req.body," \|")
     const { email } = req.body;
     const justEmail = email.email
     let result;
     if (email){
-        result = await get_filterd_users({ email:justEmail })
+        console.log("** ** ** ** ** ** ** **  * *  *",email)
+        result = await get_filterd_users({ email:email })
+        // result = await get_filterd_users({ email:justEmail })
+
     if (result.length > 0) {
+
+        console.log("!!!!!!!!!!!!! SINGLE USER : ",result)
         res.status(200).json({ result })
     }}
     else { res.status(200).json({ error: "user not found" }) }
