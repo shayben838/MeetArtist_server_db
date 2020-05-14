@@ -74,7 +74,6 @@ router.post('/upload_user', upload.single('main_image'), async function (req, re
 // UPLOAD NEW USER NO IMAGES
 router.post('/upload_user_no_image', async function (req, res, next) {
     try {        
-        console.log("@ @ @ @ @ @ @ @ @ ----- data sign up --- ",req.body)
         const role_id = "1"
         const { display_name, email, password, age, headline, city_id, country_id, profession, studio, genre, sub_genre, booking, sound_cloud, you_tube } = req.body;
         const profile_image="null"
@@ -141,18 +140,15 @@ router.post("/log_in", async function (req, res, next) {
 
 //  COOKIE LOG IN
 router.post("/cookie_log_in",checkAuth, async function (req, res, next) {
-    console.log("@@@@  INSIDE COOKIE LOOG IN",req.body," \|")
     const { email } = req.body;
     const justEmail = email.email
     let result;
     if (email){
-        console.log("** ** ** ** ** ** ** **  * *  *",email)
         result = await get_filterd_users({ email:email })
         // result = await get_filterd_users({ email:justEmail })
 
     if (result.length > 0) {
 
-        console.log("!!!!!!!!!!!!! SINGLE USER : ",result)
         res.status(200).json({ result })
     }}
     else { res.status(200).json({ error: "user not found" }) }
@@ -197,7 +193,6 @@ router.put('/remove_like_by_user', async function (req, res, next) {
     try {
         const result = await remove_like_by_the_user(req.query)
         const allUsers = result.array.forEach(element => {
-            console.log(element.user_id)
         });
         res.status(200).json({ result: result })
     } catch (err) {

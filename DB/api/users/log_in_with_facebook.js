@@ -8,7 +8,6 @@ function logInWithFacebook(email) {
             if (error) {
                 reject(error)
             }
-            console.log(result)
             resolv(result[0]);
         })
     })

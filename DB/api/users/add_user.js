@@ -6,7 +6,6 @@ const Procedure = "CALL add_new_user(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
 
 
 async function add_user({ role_id, display_name, email, password, age, headline, city_id, country_id, profession, studio, genre, sub_genre, booking, sound_cloud, you_tube, profile_image }) {
-    console.log("#######  ",{ role_id, display_name, email, password, age, headline, city_id, country_id, profession, studio, genre, sub_genre, booking, sound_cloud, you_tube, profile_image })
     
     // GENERATE hash password
     let passwordHash
@@ -26,7 +25,6 @@ async function add_user({ role_id, display_name, email, password, age, headline,
                 resolve("false")
             }
             else {
-                console.log("@@ user add succesfuly")
                 const userId = results.insertId;
                 resolve(userId);
             }

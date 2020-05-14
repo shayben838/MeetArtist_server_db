@@ -8,7 +8,6 @@ function get_cities() {
                 // reject(error)
                 resolve(error);
             }
-            console.log("sucsses")
             resolve(results);
         });
     })

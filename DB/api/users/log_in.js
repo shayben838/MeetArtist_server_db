@@ -7,11 +7,8 @@ async function logIn(email, password) {
         let isMatch
         const user = await get_filterd_users({ email:email });
         const checkMatchPassword = async () => {
-            console.log("inside compare",password,user[0].password)
             isMatch = await bcrypt.compare(password,user[0].password)
-            // console.log("is match complite")
             if (isMatch) {
-                console.log("##################### match")
                 isMatch =true
                 return [{
                     ...user[0],
