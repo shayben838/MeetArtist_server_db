@@ -192,8 +192,7 @@ router.get('/get_all_likes_by_user_DOSENT_LOGED', async function (req, res, next
 router.put('/remove_like_by_user', async function (req, res, next) {
     try {
         const result = await remove_like_by_the_user(req.query)
-        const allUsers = result.array.forEach(element => {
-        });
+        // const allUsers = result.array.forEach(element => {});
         res.status(200).json({ result: result })
     } catch (err) {
         console.log(err)
