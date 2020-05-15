@@ -1,10 +1,9 @@
 const mysql = require('mysql');
 
 const connection = mysql.createPool({
-    host: 'us-cdbr-east-06.cleardb.net',
-    user: 'bf41c42b19f6ea',
-    password: '9147af7f',
-    database: 'heroku_65ed7343bb0cf12'
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_DATABASE
 });
-
 module.exports = connection;

@@ -9,20 +9,20 @@ const TestData = {
   first_name: "Shay",
   family_name: "Ben Shimol",
   age: 25,
-  booking:"zenon records",
-  country:"israel",
-  city:"tel aviv",
-  links:{
-    sound_cloud:"https://soundcloud.com/6emgjzuy19cj",
-    you_tube:"https://www.youtube.com/watch?v=xGC99a8hF48&list=RDxGC99a8hF48&start_radio=1",
-    beat_port:"https://www.beatport.com/search?q=astrix"
+  booking: "zenon records",
+  country: "israel",
+  city: "tel aviv",
+  links: {
+    sound_cloud: "https://soundcloud.com/6emgjzuy19cj",
+    you_tube: "https://www.youtube.com/watch?v=xGC99a8hF48&list=RDxGC99a8hF48&start_radio=1",
+    beat_port: "https://www.beatport.com/search?q=astrix"
   },
-  main_music_style:"psy trance",
-  music_styles:["psy","thecno","chillout","zenon"],
-  title : "producer",
-  studio:"home",
-  description:"i make music in my home and search about new stuff",
-  email:"shayben838@gmail.com"
+  main_music_style: "psy trance",
+  music_styles: ["psy", "thecno", "chillout", "zenon"],
+  title: "producer",
+  studio: "home",
+  description: "i make music in my home and search about new stuff",
+  email: "shayben838@gmail.com"
 }
 
 /* GET home page. */
@@ -35,10 +35,16 @@ const TestData = {
 
 // ALL USERS
 router.get('/', function (req, res, next) {
-  get_all_users()
-      .then(result => res.status(200).json({ result }))
-      .catch(error => res.status(500).json({ error: error.message }))
+
+  res.status(200).json({ h: "h" })
+
 });
 
+// ALL USERS
+// router.get('/', function (req, res, next) {
+//   get_all_users()
+//       .then(result => res.status(200).json({ h:"h" }))
+//       .catch(error => res.status(500).json({ error: error.message }))
+// });
 
 module.exports = router;
