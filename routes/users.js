@@ -103,7 +103,7 @@ router.post("/log_in_with_facebook", function (req, res, next) {
         const token = jwt.sign({
             email: result[0].email,
             id: result[0].id
-        }, "JWT_MEET_ARTIST",
+        }, process.env.JWT_TOKEN,
             { expiresIn: "1h" }
         );
         // TOKEN COOKIE
@@ -123,7 +123,7 @@ router.post("/log_in", async function (req, res, next) {
         const token = jwt.sign({
             email: result[0].email,
             id: result[0].id
-        }, "JWT_MEET_ARTIST",
+        }, process.env.JWT_TOKEN,
             { expiresIn: "1h" }
         );
         // TOKEN COOKIE
