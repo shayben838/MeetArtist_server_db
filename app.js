@@ -23,7 +23,12 @@ app.use(cors({ credentials: true, origin: "https://infallible-agnesi-f06595.netl
 // app.use(cors({ credentials: true, origin: "http://localhost:3000" }))
 
 
+// DB_HOST = 'us-cdbr-east-06.cleardb.net'
+// DB_USER = 'bf41c42b19f6ea'
+// DB_PASS = '9147af7f'
+// DB_DATABASE = 'heroku_65ed7343bb0cf12'
 
+// JWT_TOKEN = "JWT_MEET_ARTIST"
 
 
 
