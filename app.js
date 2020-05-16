@@ -14,8 +14,7 @@ require('dotenv').config()
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-// CORS
-// app.use(cors());
+
 
 // HEROKU
 app.use(cors({ credentials: true, origin: "https://infallible-agnesi-f06595.netlify.app" }))
