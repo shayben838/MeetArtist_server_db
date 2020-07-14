@@ -1,17 +1,18 @@
 const connection = require("../../config_db");
 
-const Procedure = "CALL get_all_users()" 
+const Procedure = "CALL get_all_users()";
 
 function get_all_users() {
-    return new Promise((resolve, reject) => {
-        connection.query(Procedure, (error, results, fields) => {
-            if (error){
-                // console.log("get all error : ",error)
-
-                reject(error)
-            }
-            resolve(results[0]);
-        });
-    })
+  return new Promise((resolve, reject) => {
+    connection.query(Procedure, (error, results, fields) => {
+      if (error) {
+        // console.log("get all error : ",error)
+        console.error(error);
+        reject(error);
+      }
+      console.log("### ", results);
+      resolve(results[0]);
+    });
+  });
 }
 module.exports = get_all_users;

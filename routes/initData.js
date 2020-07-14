@@ -16,18 +16,23 @@ router.get("/", function (req, res) {
   const genre = get_genre();
   const sub_genre = get_sub_genre();
   const profession = get_profession();
-  Promise.all([cities, countries, users, genre, sub_genre, profession]).then(
-    (values) => {
-      res.status(200).json({
-        cities: values[0],
-        countries: values[1],
-        users: values[2],
-        genre: values[3],
-        sub_genre: values[4],
-        profession: values[5],
-      });
-    }
-  );
+  try {
+    Promise.all([cities, countries, users, genre, sub_genre, profession]).then(
+      (values) => {
+        res.status(200).json({
+          cities: values[0],
+          countries: values[1],
+          users: values[2],
+          genre: values[3],
+          sub_genre: values[4],
+          profession: values[5],
+        });
+      }
+    );
+  } catch (e) {
+    console.error(e);
+    res.status(200).json({ h: "h" });
+  }
 });
 
 module.exports = router;

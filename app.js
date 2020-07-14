@@ -30,6 +30,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 const indexRouter = require("./index");
+const searchRouter = require("./routes/search");
 const initRouter = require("./routes/initData");
 const usersRouter = require("./routes/users");
 const countriesRouter = require("./routes/countries");
@@ -40,6 +41,7 @@ const subGenreRouter = require("./routes/sub_genre");
 const professionRouter = require("./routes/profession");
 
 app.use("/", indexRouter);
+app.use("/search", searchRouter);
 app.use("/initData", initRouter);
 app.use("/users", usersRouter);
 app.use("/countries", countriesRouter);
