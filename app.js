@@ -13,15 +13,15 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
 // HEROKU
-app.use(
-  cors({
-    credentials: true,
-    origin: "https://infallible-agnesi-f06595.netlify.app",
-  })
-);
+// app.use(
+//   cors({
+//     credentials: true,
+//     origin: "https://infallible-agnesi-f06595.netlify.app",
+//   })
+// );
 
 // LOCAL
-// app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -39,8 +39,10 @@ const mailRouter = require("./routes/mail");
 const genreRouter = require("./routes/genre");
 const subGenreRouter = require("./routes/sub_genre");
 const professionRouter = require("./routes/profession");
+const authRouter = require("./routes/auth");
 
 app.use("/", indexRouter);
+app.use("/auth", authRouter);
 app.use("/search", searchRouter);
 app.use("/initData", initRouter);
 app.use("/users", usersRouter);

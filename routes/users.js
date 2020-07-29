@@ -125,6 +125,22 @@ router.post("/upload_user_no_image", async function (req, res, next) {
       sound_cloud,
       you_tube,
     } = req.body;
+    console.log(
+      display_name,
+      email,
+      password,
+      age,
+      headline,
+      city_id,
+      country_id,
+      profession,
+      studio,
+      genre,
+      sub_genre,
+      booking,
+      sound_cloud,
+      you_tube
+    );
     const profile_image = "null";
     const userId = await add_user({
       role_id,
@@ -155,35 +171,6 @@ router.put("/update_profile", function (req, res, next) {
   update_profile(req.body)
     .then((result) => res.status(200).json({ result: result }))
     .catch((error) => res.status(300).json({ error: error.message }));
-});
-
-// FACEBOOK / GOOGLE -  LOG IN
-router.post("/log_in_with_facebook", function (req, res, next) {
-  const { email } = req.body;
-  logInWithFacebook(email)
-    .then((result) => {
-      if (result.length > 0) {
-        // JWT
-        const token = jwt.sign(
-          {
-            email: result[0].email,
-            id: result[0].id,
-          },
-          process.env.JWT_TOKEN,
-          { expiresIn: "1h" }
-        );
-        // TOKEN COOKIE
-        res.cookie(
-          "MeetArtist_user",
-          JSON.stringify({ token: token, email: result[0].email }),
-          { maxAge: 1000 * 60 * 60 * 24 * 7 }
-        );
-        res.status(200).json({ result, token: token });
-      } else {
-        res.status(200).json({ error: "user not found" });
-      }
-    })
-    .catch((error) => res(200).json({ error: "S" }));
 });
 
 // LOG IN
@@ -244,7 +231,8 @@ router.post("/post_like", async function (req, res, next) {
 //  GET ALL THE USERS WHICE THE USER MAKE TO THAM LIKE.
 router.get("/get_all_likes_by_user", async function (req, res, next) {
   try {
-    const result = await get_all_likes_done_by_user(req.query);
+    const id = req.query.id;
+    const result = await get_all_likes_done_by_user(id);
     const allUsers = await all_users_by_likes(result);
     res.status(200).json({ result: result, allUsers: allUsers });
   } catch (err) {
@@ -259,6 +247,7 @@ router.get("/get_all_likes_by_user_DOSENT_LOGED", async function (
   next
 ) {
   try {
+    console.log("\n &&&&&&&", "/get_all_likes_by_user_DOSENT_LOGED");
     const result = await get_all_likes_done_by_user(req.query);
     res.status(200).json({ result: result, allUsers: [] });
   } catch (err) {
@@ -270,6 +259,7 @@ router.get("/get_all_likes_by_user_DOSENT_LOGED", async function (
 // REMOVE LIKE BY USER
 router.put("/remove_like_by_user", async function (req, res, next) {
   try {
+    console.log("remove_like_by_user --", req.query);
     const result = await remove_like_by_the_user(req.query);
     // const allUsers = result.array.forEach(element => {});
     res.status(200).json({ result: result });

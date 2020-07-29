@@ -10,7 +10,6 @@ function get_all_users() {
         console.error(error);
         reject(error);
       }
-      console.log("### ", results);
       resolve(results[0]);
     });
   });
