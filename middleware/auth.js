@@ -4,9 +4,9 @@ module.exports = function (req, res, next) {
   // get token from headar
   const token = req.header("x-auth-token");
   //   check if not token
-  if (!token) {
-    console.log("!token");
-    res.status(401).json({ msg: "No token , authorization denied" });
+  if (token === "undefined") {
+    console.log(" No token");
+    return res.status(401).json({ msg: "No token , authorization denied" });
   }
   try {
     const decoded = jwt.verify(token, process.env.JWT_TOKEN);
