@@ -5,7 +5,7 @@
 /.pnp
 .pnp.js
 /idea
-
+test_ignore
 # testing
 /coverage
 
